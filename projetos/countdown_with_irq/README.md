@@ -4,7 +4,7 @@
 
 Implementar um contador decrescente de 9 a 0, que registra o número de pressões no botão 'B' e reinicia o contador, através de uma interrupção, sempre que o botão 'A' for pressionado. O contador é exibido no display OLED.
 
-## Componentes Utilizados 
+## Componentes Utilizados 🛠️
 
 | Componente | Descrição           | Pinagem                 |
 | ---------- | ------------------- | ----------------------- |
@@ -12,7 +12,7 @@ Implementar um contador decrescente de 9 a 0, que registra o número de pressõe
 | Botão A    | Botão de reinício   | GPIO5                   |
 | Botão B    | Botão de contagem   | GPIO6                   |
 
-## Execução 
+## Execução 🧪
 
 1. Faça o clone do projeto:
 
