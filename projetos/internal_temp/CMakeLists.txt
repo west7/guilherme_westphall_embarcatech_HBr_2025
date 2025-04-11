@@ -28,38 +28,35 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(countdown_with_irq C CXX ASM)
+project(internal_temp C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(
-        countdown_with_irq countdown_with_irq.c 
-        inc/ssd1306_i2c.c
-        )
+add_executable(internal_temp internal_temp.c )
 
-pico_set_program_name(countdown_with_irq "countdown_with_irq")
-pico_set_program_version(countdown_with_irq "0.1")
+pico_set_program_name(internal_temp "internal_temp")
+pico_set_program_version(internal_temp "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(countdown_with_irq 1)
-pico_enable_stdio_usb(countdown_with_irq 1)
+pico_enable_stdio_uart(internal_temp 1)
+pico_enable_stdio_usb(internal_temp 1)
 
 # Add the standard library to the build
-target_link_libraries(countdown_with_irq
+target_link_libraries(internal_temp
         pico_stdlib)
 
 # Add the standard include files to the build
-target_include_directories(countdown_with_irq PRIVATE
+target_include_directories(internal_temp PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(countdown_with_irq 
-        hardware_i2c
+target_link_libraries(internal_temp 
+        hardware_adc
         )
 
-pico_add_extra_outputs(countdown_with_irq)
+pico_add_extra_outputs(internal_temp)
 
