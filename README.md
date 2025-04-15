@@ -22,7 +22,8 @@ Os projetos estão listados na pasta `projetos`, onde cada projeto possui seu pr
 | Projeto                                                                 | Descrição                                                             |
 | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [Home Vox](https://github.com/west7/home_vox/tree/main)                 | Assistente virtual para automação residencial.                        |
-| [Contador Decrescente com Interrupções](./projetos/countdown_with_irq/) | Contador decrescente de 9 a 0 com interrupções e contagem de cliques. |
+| [Leitor do Joystick](./projetos/read_joystick/)                         | Leitor dos eixos x e y do joystick .                                  |
 | [Leitor de Temperatura Interna](./projetos/internal_temp/)              | Leitor de temperatura interna da Raspberry Pi Pico.                   |
+| [Contador Decrescente com Interrupções](./projetos/countdown_with_irq/) | Contador decrescente de 9 a 0 com interrupções e contagem de cliques. |
 
 
