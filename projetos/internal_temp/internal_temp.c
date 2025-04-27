@@ -1,6 +1,15 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "pico/stdlib.h"
 #include "hardware/adc.h"
+#include "internal_temp.h"
+
+float adc_2_celsius(uint16_t adc_val)
+{
+    float voltage = adc_val * 3.3 / 4095.0f;
+    float temp = 27 - (voltage - 0.706) / 0.001721;
+    return temp;
+}
 
 int main()
 {
@@ -12,8 +21,7 @@ int main()
 
     while (true)
     {
-        float voltage = adc_read() * 3.3 / 4095.0f ;
-        float temp = 27 - (voltage - 0.706) / 0.001721;
+        float temp = adc_2_celsius(adc_read());
         printf("Temperatura: %2.f Cº\n", temp);
         sleep_ms(1000);
     }
