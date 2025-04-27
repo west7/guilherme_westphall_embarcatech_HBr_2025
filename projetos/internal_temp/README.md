@@ -15,7 +15,7 @@ Fazer a leitura do sensor de temperatura interna da Raspberry Pi Pico e exibir o
 | Sensor de temperatura | Sensor de temperatura interna da Raspberry Pi Pico | Interno, utiliza o canal ADC 4                    | 
 
 
-## Execução 🧪
+## Execução
 
 1. Faça o clone do projeto:
 
@@ -31,4 +31,18 @@ cd build
 cmake ..
 ninja
 cp internal_temp.uf2 /media/$USER/RPI-RP2/
+```
+
+## Testes 🧪
+
+1. Garanta que o caminho para a biblioteca Unity está correto no Makefile.
+
+2. Comente a função main no arquivo `internal_temp.c` para evitar conflitos com o teste
+
+3. Compile e execute os testes:
+
+```bash
+make 
+make run
+make clean
 ```
