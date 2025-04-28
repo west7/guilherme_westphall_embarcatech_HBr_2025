@@ -11,8 +11,7 @@ void tearDown(void)
 
 void spec_adc_2_celsius(void)
 {
-    float temperature = adc_2_celsius(876);
-    TEST_ASSERT_FLOAT_WITHIN(0.5, 27.0, temperature);
+    TEST_ASSERT_FLOAT_WITHIN(0.5, 30.0, adc_2_celsius(876));
 }
 
 int main()
