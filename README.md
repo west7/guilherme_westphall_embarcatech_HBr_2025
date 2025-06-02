@@ -1,11 +1,9 @@
 # Projetos de Sistemas Embarcados - EmbarcaTech 2025
 
-Autor: Guilherme Westphall
-
-Curso: Residência Tecnológica em Sistemas Embarcados
-
-Instituição: EmbarcaTech - HBr
-
+- **Autor**: Guilherme Westphall
+- **Curso**: Residência Tecnológica em Sistemas Embarcados
+- **Instituição**: EmbarcaTech - HBr
+  
 Brasília, Março de 2025
 
 
@@ -25,4 +23,4 @@ Os projetos estão listados na pasta `projetos`, onde cada projeto possui seu pr
 | [Leitor de Temperatura Interna](./projetos/internal_temp/)              | Leitor de temperatura interna da Raspberry Pi Pico.                   |
 | [Contador Decrescente com Interrupções](./projetos/countdown_with_irq/) | Contador decrescente de 9 a 0 com interrupções e contagem de cliques. |
 | [Galton Board](./projetos/galton_board/)                             | Simulação do Galton Board digital no display OLED.                    |
-
+| [IoT Security](./projetos/iot_security/)                             | Projeto de segurança em IoT (MQTT) com autenticação, criptografia e proteção contra replay. |
