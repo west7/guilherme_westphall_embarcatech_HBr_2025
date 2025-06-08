@@ -22,6 +22,17 @@ typedef enum
 
 state_t state = IDLE;
 
+void dump_adc_buffer(uint16_t *adc_buffer)
+{
+    for (uint32_t i = 0; i < SAMPLES; i++)
+    {
+        printf("%u", adc_buffer[i]);
+        if (i < SAMPLES - 1)
+            printf(",");
+    }
+    printf("\n");
+}
+
 int main()
 {
     stdio_init_all();
@@ -67,21 +78,11 @@ int main()
             break;
 
         case RECORDING:
-            // recording_start = time_us_32();
             gpio_put(R_LED, 1);
             record_mic(adc_buffer);
+            //dump_adc_buffer(adc_buffer);
             gpio_put(R_LED, 0);
 
-            /* if ((uint64_t)(time_us_32() - recording_start) >=
-                ((uint64_t)SAMPLES * 1000000ULL) / 8000ULL)
-            {
-                state = PROCESSING;
-                for (int i = 0; i < SAMPLES; i++)
-                {
-                    printf("%d ", adc_buffer[i]);
-                }
-                printf("\n");
-            } */
             state = PROCESSING;
             break;
 
@@ -104,7 +105,6 @@ int main()
             break;
 
         case PLAYING:
-            // Reproduzir aúdio
             gpio_put(G_LED, 1);
             buzzer_play(adc_buffer);
             gpio_put(G_LED, 0);
@@ -118,3 +118,5 @@ int main()
         sleep_ms(50);
     }
 }
+
+
