@@ -24,3 +24,4 @@ Os projetos estão listados na pasta `projetos`, onde cada projeto possui seu pr
 | [Contador Decrescente com Interrupções](./projetos/countdown_with_irq/) | Contador decrescente de 9 a 0 com interrupções e contagem de cliques. |
 | [Galton Board](./projetos/galton_board/)                             | Simulação do Galton Board digital no display OLED.                    |
 | [IoT Security](./projetos/iot_security/)                             | Projeto de segurança em IoT (MQTT) com autenticação, criptografia e proteção contra replay. |
+| [Sintetizador de áudio](./projetos/sintetizador_audio/) | Sintetizador de áudio com gravação e reprodução de sons.           |
