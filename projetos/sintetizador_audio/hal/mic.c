@@ -24,7 +24,7 @@ void adc_dma_setup()
     channel_config_set_dreq(&dma_cfg, DREQ_ADC);
 }
 
-void record_mic(uint16_t *adc_buffer)
+/* void record_mic(uint16_t *adc_buffer)
 {
     adc_fifo_drain();
     adc_run(false);
@@ -40,4 +40,34 @@ void record_mic(uint16_t *adc_buffer)
 
     adc_run(false);
     dma_channel_abort(dma_channel);
+} */
+
+void record_mic_start(uint16_t *adc_buffer)
+{
+    adc_fifo_drain();
+    adc_run(false);
+
+    dma_channel_configure(dma_channel,
+                          &dma_cfg,
+                          adc_buffer,
+                          &(adc_hw->fifo),
+                          SAMPLES,
+                          true); // Inicia a transferência
+    adc_run(true);
+}
+
+bool record_mic_is_finished()
+{
+    return !dma_channel_is_busy(dma_channel);
+}
+
+void record_mic_stop()
+{
+    adc_run(false);
+    // Embora 'abort' não seja estritamente necessário se a transferência
+    // terminou, é uma boa prática de limpeza.
+    if (dma_channel_is_busy(dma_channel))
+    {
+        dma_channel_abort(dma_channel);
+    }
 }

@@ -1,7 +1,10 @@
 #include <stdio.h>
+#include <string.h>
 #include "pico/stdlib.h"
 #include "inc/mic.h"
 #include "inc/buzzer.h"
+#include "inc/ssd1306.h"
+#include "inc/oled.h"
 
 #define BUTTON_A 5
 #define BUTTON_B 6
@@ -9,8 +12,15 @@
 #define B_LED 12
 #define R_LED 13
 
+#define I2C_SDA 14
+#define I2C_SCL 15
+#define I2C_PORT i2c1
+
 volatile bool last_b_state = true;
 volatile bool last_a_state = true;
+
+/* static uint8_t *global_ssd_buffer;
+static struct render_area *global_frame; */
 
 typedef enum
 {
@@ -22,7 +32,7 @@ typedef enum
 
 state_t state = IDLE;
 
-void dump_adc_buffer(uint16_t *adc_buffer)
+/* void dump_adc_buffer(uint16_t *adc_buffer)
 {
     for (uint32_t i = 0; i < SAMPLES; i++)
     {
@@ -31,7 +41,19 @@ void dump_adc_buffer(uint16_t *adc_buffer)
             printf(",");
     }
     printf("\n");
-}
+} */
+
+/* void draw_loading_line_task() {
+    draw_loading_line(global_ssd_buffer, global_frame);
+    multicore_fifo_push_blocking(1);
+} */
+
+struct render_area frame = {
+    .start_column = 0,
+    .end_column = ssd1306_width - 1,
+    .start_page = 0,
+    .end_page = ssd1306_n_pages - 1,
+};
 
 int main()
 {
@@ -52,15 +74,30 @@ int main()
     gpio_init(R_LED);
     gpio_set_dir(R_LED, GPIO_OUT);
 
+    i2c_init(I2C_PORT, ssd1306_i2c_clock * 1000);
+    gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
+    ssd1306_init();
+
+    calculate_render_area_buffer_length(&frame);
+    uint8_t ssd[ssd1306_buffer_length];
+    memset(ssd, 0, ssd1306_buffer_length);
+    render_on_display(ssd, &frame);
+
     adc_dma_setup();
     sleep_ms(100);
     pwm_buzzer_init();
     sleep_ms(100);
 
-    uint32_t recording_start = 0;
+    //uint32_t recording_start = 0;
     uint16_t adc_buffer[SAMPLES];
 
-    gpio_put(B_LED, 1);
+    gpio_put(B_LED, 0);
+    
+    absolute_time_t recording_start_time;
+    bool is_recording_active = false;
+    size_t playback_index = 0;
+    bool is_playing = false;
 
     while (true)
     {
@@ -73,20 +110,38 @@ int main()
             if (!current_a_state && last_a_state)
             {
                 state = RECORDING;
+                is_recording_active = false;
                 gpio_put(B_LED, 0);
             }
             break;
 
         case RECORDING:
-            gpio_put(R_LED, 1);
-            record_mic(adc_buffer);
-            //dump_adc_buffer(adc_buffer);
-            gpio_put(R_LED, 0);
+            if (!is_recording_active)
+            {
+                gpio_put(R_LED, 1);
 
-            state = PROCESSING;
+                draw_recording_text(ssd, &frame);
+
+                recording_start_time = get_absolute_time();
+                record_mic_start(adc_buffer);
+
+                is_recording_active = true;
+            }
+
+            update_loading_animation(ssd, &frame, recording_start_time);
+
+            if (record_mic_is_finished())
+            {
+                record_mic_stop();
+                gpio_put(R_LED, 0);
+                is_recording_active = false;
+                state = PROCESSING;
+            }
             break;
 
         case PROCESSING:
+            memset(ssd, 0, ssd1306_buffer_length);
+            render_on_display(ssd, &frame);
             if ((time_us_32() / 500000) % 2)
                 gpio_put(B_LED, 1);
             else
@@ -95,6 +150,7 @@ int main()
             if (!current_b_state && last_b_state)
             {
                 state = PLAYING;
+                is_playing = false;
                 gpio_put(B_LED, 0);
             }
             else if (!current_a_state && last_a_state)
@@ -107,6 +163,7 @@ int main()
         case PLAYING:
             gpio_put(G_LED, 1);
             buzzer_play(adc_buffer);
+            draw_audio_wave(ssd, &frame, adc_buffer);
             gpio_put(G_LED, 0);
             
             state = PROCESSING;

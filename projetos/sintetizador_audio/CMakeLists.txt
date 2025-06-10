@@ -39,6 +39,8 @@ add_executable(sintetizador_audio
         main.c 
         hal/mic.c
         hal/buzzer.c
+        hal/ssd1306_i2c.c
+        hal/oled.c
         )
 
 pico_set_program_name(sintetizador_audio "sintetizador_audio")
@@ -63,6 +65,8 @@ target_link_libraries(sintetizador_audio
         hardware_adc
         hardware_pwm
         hardware_clocks
+        hardware_i2c
+        pico_multicore
         )
 
 pico_add_extra_outputs(sintetizador_audio)
