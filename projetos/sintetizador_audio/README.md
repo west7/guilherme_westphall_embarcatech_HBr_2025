@@ -80,7 +80,7 @@ git clone https://github.com/west7/guilherme_westphall_embarcatech_HBr_2025.git
 ```bash
 mkdir build
 cd build
-cmake ..
+cmake -G Ninja ..
 ninja
-cp NOME.uf2 /media/$USER/RPI-RP2/
+cp sintetizador_audio.uf2 /media/$USER/RPI-RP2/
 ```
