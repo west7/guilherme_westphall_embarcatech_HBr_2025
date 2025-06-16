@@ -24,24 +24,6 @@ void adc_dma_setup()
     channel_config_set_dreq(&dma_cfg, DREQ_ADC);
 }
 
-/* void record_mic(uint16_t *adc_buffer)
-{
-    adc_fifo_drain();
-    adc_run(false);
-
-    dma_channel_configure(dma_channel,
-                          &dma_cfg,
-                          adc_buffer,
-                          &(adc_hw->fifo),
-                          SAMPLES,
-                          true);
-    adc_run(true);
-    dma_channel_wait_for_finish_blocking(dma_channel);
-
-    adc_run(false);
-    dma_channel_abort(dma_channel);
-} */
-
 void record_mic_start(uint16_t *adc_buffer)
 {
     adc_fifo_drain();

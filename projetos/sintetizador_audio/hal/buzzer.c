@@ -26,7 +26,7 @@ void buzzer_play(uint16_t *adc_buffer)
 
     for (size_t i = 0; i < SAMPLES; i++)
     {
-        if (i % 100 == 0) printf("%d ", adc_buffer[i]);
+        //if (i % 100 == 0) printf("%d ", adc_buffer[i]);
 
         int32_t sample = adc_buffer[i] - center;
         sample = (int32_t)(sample * gain) + center;

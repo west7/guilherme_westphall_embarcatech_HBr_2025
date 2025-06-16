@@ -12,8 +12,6 @@
 #define SAMPLES (SAMPLE_RATE * 5)
 
 void adc_dma_setup();
-/* void record_mic(uint16_t *adc_buffer);
-*/
 void record_mic_start(uint16_t *adc_buffer);
 bool record_mic_is_finished();
 void record_mic_stop();

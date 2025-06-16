@@ -4,38 +4,6 @@ char *text[] = {
     " Gravando     ",
     " Reproduzindo "};
 
-/* void draw_loading_line(uint8_t *ssd, struct render_area *area)
-{
-    int x = 0, y = 5;
-    ssd1306_draw_string(ssd, x, y, text[0]);
-
-    const float duration = (float)SAMPLES / SAMPLE_RATE;
-    const int total_steps = ssd1306_width;
-    const float step_interval_us = (duration / total_steps) * 1000000.0f;
-
-    absolute_time_t start = get_absolute_time();
-    int last_step = -1;
-
-    while (true)
-    {
-        int64_t elapsed_us = absolute_time_diff_us(start, get_absolute_time());
-        int current_step = (int)(elapsed_us / step_interval_us);
-
-        if (current_step >= total_steps)
-        {
-            break;
-        }
-
-        if (current_step > last_step)
-        {
-            int x0 = area->start_column;
-            int x1 = x0 + current_step;
-            ssd1306_draw_line(ssd, x0, CENTER_Y, x1, CENTER_Y, true);
-            render_on_display(ssd, area);
-            last_step = current_step;
-        }
-    }
-} */
 
 void update_loading_animation(uint8_t *ssd, struct render_area *area, absolute_time_t start_time)
 {

@@ -32,17 +32,6 @@ typedef enum
 
 state_t state = IDLE;
 
-/* void dump_adc_buffer(uint16_t *adc_buffer)
-{
-    for (uint32_t i = 0; i < SAMPLES; i++)
-    {
-        printf("%u", adc_buffer[i]);
-        if (i < SAMPLES - 1)
-            printf(",");
-    }
-    printf("\n");
-} */
-
 /* void draw_loading_line_task() {
     draw_loading_line(global_ssd_buffer, global_frame);
     multicore_fifo_push_blocking(1);

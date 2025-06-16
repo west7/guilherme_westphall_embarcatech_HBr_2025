@@ -1,10 +1,12 @@
 # Projetos de Sistemas Embarcados - EmbarcaTech 2025
 
-- **Autor**: Guilherme Westphall
-- **Curso**: Residência Tecnológica em Sistemas Embarcados
-- **Instituição**: EmbarcaTech - HBr
-  
-Brasília, Março de 2025
+- Autor: **Guilherme Westphall**
+- Curso: Residência Tecnológica em Sistemas Embarcados
+- Instituição: EmbarcaTech - HBr
+
+📍 Brasília, 13 de Junho de 2025
+
+
 
 
 ## Sobre este repositório
