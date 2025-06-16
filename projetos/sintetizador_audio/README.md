@@ -1,5 +1,5 @@
 
-# Sintesizador de áudio
+# Sintetizador de áudio
 
 > Projetar um gravador e reprodutor de áudio com a Raspberry Pi Pico W, utilizando um microfone com amplificador de áudio (MAX4466EXK) e dois Buzzers para reprodução de áudio. 
 
