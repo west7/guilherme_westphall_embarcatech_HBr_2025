@@ -18,12 +18,14 @@ Os projetos estão listados na pasta `projetos`, onde cada projeto possui seu pr
 
 ## Projetos
 
-| Projeto                                                                 | Descrição                                                             |
-| ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Home Vox](https://github.com/west7/home_vox/tree/main)                 | Assistente virtual para automação residencial.                        |
-| [Leitor do Joystick](./projetos/read_joystick/)                         | Leitor dos eixos x e y do joystick .                                  |
-| [Leitor de Temperatura Interna](./projetos/internal_temp/)              | Leitor de temperatura interna da Raspberry Pi Pico.                   |
-| [Contador Decrescente com Interrupções](./projetos/countdown_with_irq/) | Contador decrescente de 9 a 0 com interrupções e contagem de cliques. |
-| [Galton Board](./projetos/galton_board/)                             | Simulação do Galton Board digital no display OLED.                    |
-| [IoT Security](./projetos/iot_security/)                             | Projeto de segurança em IoT (MQTT) com autenticação, criptografia e proteção contra replay. |
-| [Sintetizador de áudio](./projetos/sintetizador_audio/) | Sintetizador de áudio com gravação e reprodução de sons.           |
+| Projeto                                                                 | Descrição                                                                                   |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| [Home Vox](https://github.com/west7/home_vox/tree/main)                 | Assistente virtual para automação residencial.                                              |
+| [Leitor do Joystick](./projetos/read_joystick/)                         | Leitor dos eixos x e y do joystick .                                                        |
+| [Leitor de Temperatura Interna](./projetos/internal_temp/)              | Leitor de temperatura interna da Raspberry Pi Pico.                                         |
+| [Contador Decrescente com Interrupções](./projetos/countdown_with_irq/) | Contador decrescente de 9 a 0 com interrupções e contagem de cliques.                       |
+| [Galton Board](./projetos/galton_board/)                                | Simulação do Galton Board digital no display OLED.                                          |
+| [IoT Security](./projetos/iot_security/)                                | Projeto de segurança em IoT (MQTT) com autenticação, criptografia e proteção contra replay. |
+| [Sintetizador de áudio](./projetos/sintetizador_audio/)                 | Sintetizador de áudio com gravação e reprodução de sons.                                    |
+| [Sistema Multitarefa com RTOS](./projetos/multitask_rtos/)              | Sistema multitarefa utilizando FreeRTOS.                                                    |
+| [Sistema de Cofre Digital com RTOS](./projetos/digital_safe_rtos/)      | Cofre digital com cadastro e armazenamento de senhas utilizando FreeRTOS.                   |
